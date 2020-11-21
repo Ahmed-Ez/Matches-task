@@ -1,15 +1,15 @@
-import React, { Fragment } from 'react';
-import { Card, Row, Col } from 'react-bootstrap';
+import React from 'react';
+import { Card, Row, Col, Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
-const Match = ({ match }) => {
-  const date = new Date(match.startTime);
-  console.log(date.getTime() - new Date().getTime());
+const Match = ({ match, deleteMatch, setCurrent }) => {
+  const history = useHistory();
+  const endDate = new Date(match.endTime);
+  const startDate = new Date(match.startTime);
   return (
-    <Card>
+    <Card className="myCard">
       <Row>
-        <Col>
-          {match.league} {date.toLocaleString()}
-        </Col>
+        <Col>{match.league}</Col>
       </Row>
       <Row>
         <Col>
@@ -32,9 +32,30 @@ const Match = ({ match }) => {
         <Col>
           {match.isActive
             ? 'Live Now'
-            : new Date().getTime() > date.getTime()
-            ? 'Finished'
-            : date.toLocaleString()}
+            : new Date().getTime() > endDate.getTime()
+            ? `Finished at ${endDate.toLocaleString()}`
+            : `Starts at ${startDate.toLocaleString()}`}
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Button
+            className="myBtn"
+            variant="info"
+            onClick={() => {
+              setCurrent(match);
+              history.push(`/${match._id}`);
+            }}
+          >
+            Edit
+          </Button>
+          <Button
+            className="myBtn"
+            variant="danger"
+            onClick={() => deleteMatch(match._id)}
+          >
+            Delete
+          </Button>
         </Col>
       </Row>
     </Card>

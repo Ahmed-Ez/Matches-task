@@ -3,6 +3,19 @@
   text-align: center;
 }
 
+.myBtn {
+  margin: 10px;
+}
+
+.filter {
+  margin: 10px;
+  padding: 20px;
+}
+
+.filter .row {
+  margin: 10px;
+}
+
 h1 {
   text-align: center;
   margin-bottom: 30px;
