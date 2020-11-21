@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const connectDB = require('./config/db');
 const matchesRouter = require('./routes/matchesRouter');
+const path = require('path');
 
 //Database connection
 connectDB();
@@ -11,11 +12,12 @@ connectDB();
 app.use(express.json());
 
 //Routes
-app.get('/', (req, res) => {
-  res.send('Hello');
-});
-
 app.use('/api/matches', matchesRouter);
+
+app.use(express.static(path.resolve('frontend', 'build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve('frontend', 'build', 'index.html'));
+});
 
 const PORT = process.env.PORT || 5000;
 
