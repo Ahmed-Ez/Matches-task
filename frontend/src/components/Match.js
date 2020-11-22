@@ -13,7 +13,7 @@ const Match = ({ match, deleteMatch, setCurrent }) => {
       </Row>
       <Row>
         <Col>
-          <h3>{match.homeTeam}</h3>
+          <h5>{match.homeTeam}</h5>
         </Col>
         <Col>
           <h4>{match.homeTeamScore}</h4>
@@ -25,7 +25,7 @@ const Match = ({ match, deleteMatch, setCurrent }) => {
           <h4>{match.awayTeamScore}</h4>
         </Col>
         <Col>
-          <h3>{match.awayTeam}</h3>
+          <h5>{match.awayTeam}</h5>
         </Col>
       </Row>
       <Row>
